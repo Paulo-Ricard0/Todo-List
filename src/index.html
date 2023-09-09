@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <script src="https://kit.fontawesome.com/6c5d1fca83.js" crossorigin="anonymous"></script>
+  <title>Lista de Tarefas</title>
+</head>
+
+<body>
+
+  <div class="container_all">
+
+    <header class="card header">
+      <h1 class="title">Todo List</h1>
+      <section class="filter_tasks">
+        <div class="actions_filter">
+          <button class="filter_button" id="filter_button">
+            <!-- Botão de pesquisa com ícone -->
+            <i class="fa-solid fa-magnifying-glass fa-sm" id="filter_task"></i>
+          </button>
+        </div>
+
+        <div class="content">
+          <label for="filter_input">Pesquisar</label>
+          <input type="search" class="filter_input" id="filter_input" placeholder="Pesquisar...">
+        </div>
+      </section>
+    </header>
+
+    <main>
+      <section class="add_tasks">
+        <div class="card add">
+          <div class="actions">
+            <button id="add_task_button">
+              <!-- Botão para adicionar uma nova tarefa com ícones -->
+              <i class="fa-solid fa-plus fa-sm" id="add_task_plus"></i>
+              <span class="material-symbols-rounded" id="add_task_circle">add_circle</span>
+            </button>
+          </div>
+
+          <div class="txt-container">
+            <label for="add_task_input">Adicionar tarefa</label>
+            <input type="text" class="add_task_input" placeholder="Adicione uma nova tarefa..." id="add_task_input" />
+          </div>
+        </div>
+      </section>
+
+      <section class="tasks_lists_container">
+        <ul class="todos">
+          <li class="card list_tasks">
+            <div class="task_content">
+              <input type="text" class="task_input" id="task_input">
+            </div>
+            <div class="actions_tasks">
+              <button class="task_button button_check">
+                <i class="fa-regular fa-circle" id="circle_task"></i>
+                <i class="fa-regular fa-circle-check" id="circle_check_task"></i>
+              </button>
+              <button class="task_button edit_delete_button">
+                <i class="fa-regular fa-pen-to-square" id="edit_task"></i>
+                <i class="fa-regular fa-trash-can" id="delete_task"></i>
+              </button>
+            </div>
+          </li>
+        </ul>
+
+        <div class="card stat">
+          <p class="item_count"><span id="items-left">0</span>Items restantes</p>
+
+          <div class="tasks_filters">
+            <button id="filter_all" class="on">Todos</button>
+            <button id="filter_active">Ativos</button>
+            <button id="filter_completed">Concluídos</button>
+          </div>
+
+          <div class="clear_completed_container">
+            <button id="clear_completed">Limpar Concluídos</button>
+          </div>
+        </div>
+      </section>
+
+      <div class="drag_and_drop">
+        <p>Arraste e solte para reordernar a lista</p>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <p>Feito com <span><i class="fa-solid fa-heart fa-beat fa-sm"></i></span> por Paulo Ricardo</p>
+    </footer>
+
+  </div>
+
+  <script src="./js/index.js"></script>
+  <script src="./js/animations.js"></script>
+</body>
+
+</html>
