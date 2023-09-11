@@ -285,6 +285,7 @@ header.card {
   position: absolute;
   left: 4rem;
   bottom: 2.2rem;
+  transition: .3s ease-in-out;
 }
 
 .fa-circle:active,
@@ -294,6 +295,22 @@ header.card {
 
 #circle_check_task {
   display: none;
+}
+
+.task_input.check {
+  text-decoration: line-through;
+  color: var(--primary-text-color);
+}
+
+/* BUTTON SAVE */
+#save_task {
+  position: absolute;
+  display: none;
+  transition: .3s ease-in-out;
+}
+
+#edit_task {
+  transition: .3s ease-in-out;
 }
 
 /* BUTTON DELETE AND EDIT */

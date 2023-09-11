@@ -38,34 +38,3 @@ addTaskInput.addEventListener("focus", handleInputFocus);
 addTaskInput.addEventListener("blur", handleInputBlur);
 addTaskPlusButton.addEventListener("click", plusButtonClick);
 addTaskCircleButton.addEventListener("click", circleButtonClick);
-
-// ANIMATIONS INPUT TASKS
-
-const inputTask = document.getElementById("task_input");
-const selectTaskButton = document.getElementById("circle_task");
-const checkTaskButton = document.getElementById("circle_check_task");
-
-const handleInputTaskFocus = () => {
-  toggleOpacity(selectTaskButton, 0);
-  toggleDisplay(checkTaskButton, "flex");
-  toggleOpacity(checkTaskButton, 1);
-};
-
-const handleInputTaskBlur = () => {
-  toggleOpacity(checkTaskButton, 0);
-  toggleOpacity(selectTaskButton, 1);
-};
-
-const checkButtonClick = () => {
-  inputTask.blur();
-  checkTaskButton.style.display = "none";
-};
-
-const selectButtonClick = () => {
-  inputTask.focus();
-};
-
-inputTask.addEventListener("focus", handleInputTaskFocus);
-inputTask.addEventListener("blur", handleInputTaskBlur);
-selectTaskButton.addEventListener("click", selectButtonClick);
-checkTaskButton.addEventListener("click", checkButtonClick);
