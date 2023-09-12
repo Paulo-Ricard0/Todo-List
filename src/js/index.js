@@ -19,6 +19,13 @@ document.addEventListener("DOMContentLoaded", function () {
     renderTodos();
   }
 
+  function editTodoItem(index) {
+    const input = document.querySelector(`[data-index="${index}"]`);
+    const newValue = input.value;
+    todos[index].item = newValue;
+    renderTodos();
+  }
+
   function toggleTodoItem(index) {
     todos[index].isCompleted = !todos[index].isCompleted;
     // renderTodos();
@@ -40,9 +47,6 @@ document.addEventListener("DOMContentLoaded", function () {
     todos.forEach((todo, index) => {
       const todoItem = document.createElement("li");
       todoItem.classList.add("card", "list_tasks");
-      if (todo.isCompleted) {
-        todoItem.classList.add("checked");
-      }
 
       const taskContent = document.createElement("div");
       taskContent.classList.add("task_content");
@@ -51,7 +55,9 @@ document.addEventListener("DOMContentLoaded", function () {
       input.setAttribute("type", "text");
       input.setAttribute("disabled", "disabled");
       input.classList.add("task_input");
-      input.id = "task_input";
+      input.setAttribute("name", "name");
+      input.setAttribute("autocomplete", "none");
+      input.setAttribute("data-index", index);
       input.value = todo.item;
 
       const actionsTasks = document.createElement("div");
@@ -100,6 +106,8 @@ document.addEventListener("DOMContentLoaded", function () {
       SaveTaskButton.classList.add("fa-solid", "fa-check");
       SaveTaskButton.id = "save_task";
       SaveTaskButton.addEventListener("click", () => {
+        const index = input.getAttribute("data-index");
+        editTodoItem(index);
         toggleOpacity(SaveTaskButton, 0);
         toggleOpacity(editTaskButton, 1);
         toggleDisplay(SaveTaskButton, "none");
@@ -130,8 +138,14 @@ document.addEventListener("DOMContentLoaded", function () {
       todoItem.appendChild(actionsTasks);
 
       todosContainer.appendChild(todoItem);
-    });
 
+      if (todo.isCompleted) {
+        input.classList.toggle("check");
+        toggleOpacity(selectTaskButton, 0);
+        toggleDisplay(checkTaskButton, "flex");
+        toggleOpacity(checkTaskButton, 1);
+      }
+    });
     const itemsLeft = document.getElementById("items-left");
     const activeTodos = todos.filter((todo) => !todo.isCompleted);
     itemsLeft.textContent = activeTodos.length;
@@ -163,7 +177,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Eventos para filtrar as tarefas
   document.getElementById("filter_all").addEventListener("click", () => {
-    // renderTodos();
+    renderTodos();
   });
 
   document.getElementById("filter_active").addEventListener("click", () => {
@@ -184,9 +198,6 @@ document.addEventListener("DOMContentLoaded", function () {
     filteredTodos.forEach((todo, index) => {
       const todoItem = document.createElement("li");
       todoItem.classList.add("card", "list_tasks");
-      if (todo.isCompleted) {
-        todoItem.classList.add("checked");
-      }
 
       const taskContent = document.createElement("div");
       taskContent.classList.add("task_content");
@@ -195,7 +206,9 @@ document.addEventListener("DOMContentLoaded", function () {
       input.setAttribute("type", "text");
       input.setAttribute("disabled", "disabled");
       input.classList.add("task_input");
-      input.id = "task_input";
+      input.setAttribute("name", "name");
+      input.setAttribute("autocomplete", "none");
+      input.setAttribute("data-index", index);
       input.value = todo.item;
 
       const actionsTasks = document.createElement("div");
@@ -244,6 +257,8 @@ document.addEventListener("DOMContentLoaded", function () {
       SaveTaskButton.classList.add("fa-solid", "fa-check");
       SaveTaskButton.id = "save_task";
       SaveTaskButton.addEventListener("click", () => {
+        const index = input.getAttribute("data-index");
+        editTodoItem(index);
         toggleOpacity(SaveTaskButton, 0);
         toggleOpacity(editTaskButton, 1);
         toggleDisplay(SaveTaskButton, "none");
@@ -274,7 +289,18 @@ document.addEventListener("DOMContentLoaded", function () {
       todoItem.appendChild(actionsTasks);
 
       todosContainer.appendChild(todoItem);
+
+      if (todo.isCompleted) {
+        input.classList.toggle("check");
+        toggleOpacity(selectTaskButton, 0);
+        toggleDisplay(checkTaskButton, "flex");
+        toggleOpacity(checkTaskButton, 1);
+      }
     });
+
+    const itemsLeft = document.getElementById("items-left");
+    const activeTodos = todos.filter((todo) => !todo.isCompleted);
+    itemsLeft.textContent = activeTodos.length;
   }
 
   // Evento para limpar tarefas concluídas
@@ -291,6 +317,17 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
+  // Filtro de tarefas
+  document.getElementById("filter_input").addEventListener("input", () => {
+    const FilterQuery = document
+      .getElementById("filter_input")
+      .value.trim()
+      .toLowerCase();
+    const filteredTodos = todos.filter((todo) =>
+      todo.item.toLowerCase().includes(FilterQuery)
+    );
+    renderFilteredTodos(filteredTodos);
+  });
   // Função para iniciar a página
   function initializePage() {
     // Carregar tarefas salvas (se houver)
