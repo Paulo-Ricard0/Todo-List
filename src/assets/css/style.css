@@ -254,6 +254,17 @@ header.card {
 .list_tasks {
   position: relative;
   border-bottom: 0.2rem solid var(--secondary-text-color);
+  transition: .3s ease-in-out;
+}
+
+.list_tasks.not-dragging {
+  transition: .3s ease-in-out;
+}
+
+.dragging {
+  opacity: 0.6;
+  transform: scale(0.95);
+  transition: .3s ease-in-out;
 }
 
 .list_tasks:first-child {
@@ -373,6 +384,14 @@ header.card {
 .fa-heart {
   color: #6859b2;
   margin: 0 0.5rem;
+}
+
+/* MEDIA QUERIE 768px */
+@media (max-width: 768px) {
+  /* DRAG AND DROP */
+  .drag_and_drop {
+    display: none;
+  }
 }
 
 /* MEDIA QUERIE 599px */
@@ -512,20 +531,12 @@ header.card {
     top: -3rem;
   }
 
-  /* DRAG AND DROP */
-
-  .drag_and_drop {
-    font-size: var(--fsize-text-small);
-  }
-
   /* FOOTER */
 
   .footer {
     font-size: var(--fsize-text-small);
-    /* margin-bottom: 1rem; */
   }
 }
-
 
 /* MEDIA QUERIE 440px */
 
@@ -595,12 +606,6 @@ header.card {
     padding: 0 4rem 0 1rem;
     transition: none;
     font-size: var(--fsize-text-small);
-  }
-
-  .drag_and_drop {
-    font-size: calc(var(--fsize-text-small) / 1.1);
-    font-weight: var(--fw-bold);
-    margin: 2rem 0;
   }
 
   .footer {
@@ -708,9 +713,5 @@ header.card {
   .stat * {
     font-size: calc(var(--fsize-text-small) / 1.5);
     font-weight: var(--fw-bold);
-  }
-
-  .drag_and_drop {
-    display: none;
   }
 }
