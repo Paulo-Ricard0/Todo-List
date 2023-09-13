@@ -75,6 +75,7 @@ document.addEventListener("DOMContentLoaded", function () {
         toggleOpacity(checkTaskButton, 1);
         input.classList.toggle("check");
         toggleTodoItem(index);
+        // Atualiza o contador de item restantes
         const itemsLeft = document.getElementById("items-left");
         const activeTodos = todos.filter((todo) => !todo.isCompleted);
         itemsLeft.textContent = activeTodos.length;
@@ -89,6 +90,7 @@ document.addEventListener("DOMContentLoaded", function () {
         toggleOpacity(checkTaskButton, 0);
         input.classList.toggle("check");
         toggleTodoItem(index);
+        // Atualiza o contador de item restantes
         const itemsLeft = document.getElementById("items-left");
         const activeTodos = todos.filter((todo) => !todo.isCompleted);
         itemsLeft.textContent = activeTodos.length;
@@ -152,18 +154,19 @@ document.addEventListener("DOMContentLoaded", function () {
         toggleOpacity(checkTaskButton, 1);
       }
 
+      // Arrastar e soltar para reordenar tarefas
       if (window.matchMedia("(min-width: 768px)").matches) {
         todoItem.setAttribute("draggable", "true");
 
         todoItem.addEventListener("dragstart", (e) => {
-          e.dataTransfer.setData("text/plain", index); // Define os dados a serem arrastados
+          e.dataTransfer.setData("text/plain", index);
           e.target.classList.add("dragging");
           const lists = document.querySelectorAll(".list_tasks:not(.dragging)");
           lists.forEach((item) => item.classList.add("not-dragging"));
         });
 
         todoItem.addEventListener("dragover", (e) => {
-          e.preventDefault(); // Impede o comportamento padrão (necessário para permitir soltar)
+          e.preventDefault();
         });
 
         todoItem.addEventListener("drop", (e) => {
@@ -185,7 +188,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
       }
     });
-
+    // Atualiza o contador de item restantes
     const itemsLeft = document.getElementById("items-left");
     const activeTodos = todos.filter((todo) => !todo.isCompleted);
     itemsLeft.textContent = activeTodos.length;
@@ -206,7 +209,7 @@ document.addEventListener("DOMContentLoaded", function () {
     .getElementById("add_task_button")
     .addEventListener("click", handleAddTask);
 
-  // Evento para adicionar tarefa quando a tecla "Enter" for pressionada no input
+  // Adiciona a tarefa quando a tecla Enter for pressionada no input
   document
     .getElementById("add_task_input")
     .addEventListener("keydown", (event) => {
@@ -266,6 +269,7 @@ document.addEventListener("DOMContentLoaded", function () {
         toggleOpacity(checkTaskButton, 1);
         input.classList.toggle("check");
         toggleTodoItem(index);
+        // Atualiza o contador de item restantes
         const itemsLeft = document.getElementById("items-left");
         const activeTodos = todos.filter((todo) => !todo.isCompleted);
         itemsLeft.textContent = activeTodos.length;
@@ -280,6 +284,7 @@ document.addEventListener("DOMContentLoaded", function () {
         toggleOpacity(checkTaskButton, 0);
         input.classList.toggle("check");
         toggleTodoItem(index);
+        // Atualiza o contador de item restantes
         const itemsLeft = document.getElementById("items-left");
         const activeTodos = todos.filter((todo) => !todo.isCompleted);
         itemsLeft.textContent = activeTodos.length;
@@ -343,7 +348,7 @@ document.addEventListener("DOMContentLoaded", function () {
         toggleOpacity(checkTaskButton, 1);
       }
     });
-
+    // Atualiza o contador de item restantes
     const itemsLeft = document.getElementById("items-left");
     const activeTodos = todos.filter((todo) => !todo.isCompleted);
     itemsLeft.textContent = activeTodos.length;
@@ -374,12 +379,10 @@ document.addEventListener("DOMContentLoaded", function () {
     );
     renderFilteredTodos(filteredTodos);
   });
-  // Função para iniciar a página
+
   function initializePage() {
-    // Carregar tarefas salvas (se houver)
     renderTodos();
   }
 
-  // Inicializar a página
   initializePage();
 });

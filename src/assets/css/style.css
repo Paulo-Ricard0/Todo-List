@@ -40,6 +40,11 @@ img {
   user-select: none;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 /* BODY */
 
 body {
@@ -47,7 +52,6 @@ body {
   font-family: 'Poppins', sans-serif;
   background: var(--bg-color) var(--img-bg) no-repeat 0% 0% / 100vw 50vh;
   background-blend-mode: lighten;
-  /* backdrop-filter: brightness(50%); */
   width: min(85%, 65rem);
   margin: auto;
 }
@@ -136,7 +140,6 @@ header.card {
   cursor: pointer;
   caret-color: var(--secondary-color);
   color: var(--tertiary-color);
-  /* border: 0.1rem solid var(--secondary-color); */
   transition: width 0.3s ease-in-out, border-radius 0.3s ease-in-out, padding-right 0.3s ease-in-out;
 }
 
@@ -182,6 +185,7 @@ header.card {
 
 #add_task_circle {
   display: none;
+  font-size: 2.6rem;
 }
 
 .actions:active {
@@ -231,9 +235,6 @@ header.card {
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
-  /* display: grid;
-  grid-template-columns: 1fr 1fr 1fr; */
-  /* gap: 1rem; */
 }
 
 .stat * {
@@ -381,6 +382,10 @@ header.card {
   font-weight: var(--fw-normal);
 }
 
+.footer a {
+  color: #6859b2;
+}
+
 .fa-heart {
   color: #6859b2;
   margin: 0 0.5rem;
@@ -388,6 +393,7 @@ header.card {
 
 /* MEDIA QUERIE 768px */
 @media (max-width: 768px) {
+
   /* DRAG AND DROP */
   .drag_and_drop {
     display: none;
@@ -395,9 +401,7 @@ header.card {
 }
 
 /* MEDIA QUERIE 599px */
-
 @media (max-width: 599px) {
-
   /* BODY */
 
   body {
@@ -457,9 +461,9 @@ header.card {
     font-size: 2rem;
   }
 
-  /* #add_task_circle {
-    font-size: 2.2rem;
-  } */
+  #add_task_circle {
+    font-size: 2.5rem;
+  }
 
   .add_task_input {
     padding-left: 0;
@@ -539,24 +543,24 @@ header.card {
 }
 
 /* MEDIA QUERIE 440px */
-
 @media (max-width: 440px) {
-
   .footer {
     font-size: calc(var(--fsize-text-small) / 1.2);
   }
 }
 
 /* MEDIA QUERIE 378px */
-
 @media (max-width: 378px) {
-
   .title {
     font-size: calc(var(--fsize-text) * 1.6);
   }
 
   .add_task_input::placeholder {
     font-size: var(--fsize-text-small);
+  }
+
+  #add_task_circle {
+    font-size: 2.3rem;
   }
 
   /* TASK LIST */
@@ -620,8 +624,8 @@ header.card {
 
 }
 
+/* MEDIA QUERIE 330px */
 @media (max-width: 330px) {
-
   .title {
     font-size: calc(var(--fsize-title) / 2);
   }
@@ -675,7 +679,7 @@ header.card {
   }
 
   #add_task_circle {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
   }
 
   /* TASK LIST */
