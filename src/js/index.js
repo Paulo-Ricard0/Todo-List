@@ -75,6 +75,9 @@ document.addEventListener("DOMContentLoaded", function () {
         toggleOpacity(checkTaskButton, 1);
         input.classList.toggle("check");
         toggleTodoItem(index);
+        const itemsLeft = document.getElementById("items-left");
+        const activeTodos = todos.filter((todo) => !todo.isCompleted);
+        itemsLeft.textContent = activeTodos.length;
       });
 
       const checkTaskButton = document.createElement("i");
@@ -86,6 +89,9 @@ document.addEventListener("DOMContentLoaded", function () {
         toggleOpacity(checkTaskButton, 0);
         input.classList.toggle("check");
         toggleTodoItem(index);
+        const itemsLeft = document.getElementById("items-left");
+        const activeTodos = todos.filter((todo) => !todo.isCompleted);
+        itemsLeft.textContent = activeTodos.length;
       });
 
       const editDeleteButton = document.createElement("button");
@@ -145,7 +151,41 @@ document.addEventListener("DOMContentLoaded", function () {
         toggleDisplay(checkTaskButton, "flex");
         toggleOpacity(checkTaskButton, 1);
       }
+
+      if (window.matchMedia("(min-width: 768px)").matches) {
+        todoItem.setAttribute("draggable", "true");
+
+        todoItem.addEventListener("dragstart", (e) => {
+          e.dataTransfer.setData("text/plain", index); // Define os dados a serem arrastados
+          e.target.classList.add("dragging");
+          const lists = document.querySelectorAll(".list_tasks:not(.dragging)");
+          lists.forEach((item) => item.classList.add("not-dragging"));
+        });
+
+        todoItem.addEventListener("dragover", (e) => {
+          e.preventDefault(); // Impede o comportamento padrão (necessário para permitir soltar)
+        });
+
+        todoItem.addEventListener("drop", (e) => {
+          e.preventDefault();
+          const sourceIndex = e.dataTransfer.getData("text/plain");
+          const destinationIndex = index;
+          e.target.classList.remove("dragging");
+          const lists = document.querySelectorAll(".list_tasks:not(.dragging)");
+          lists.forEach((item) => item.classList.remove("not-dragging"));
+
+          // Realiza a reordenação da lista
+          if (sourceIndex !== destinationIndex) {
+            const temp = todos[sourceIndex];
+            todos[sourceIndex] = todos[destinationIndex];
+            todos[destinationIndex] = temp;
+
+            renderTodos();
+          }
+        });
+      }
     });
+
     const itemsLeft = document.getElementById("items-left");
     const activeTodos = todos.filter((todo) => !todo.isCompleted);
     itemsLeft.textContent = activeTodos.length;
@@ -226,6 +266,9 @@ document.addEventListener("DOMContentLoaded", function () {
         toggleOpacity(checkTaskButton, 1);
         input.classList.toggle("check");
         toggleTodoItem(index);
+        const itemsLeft = document.getElementById("items-left");
+        const activeTodos = todos.filter((todo) => !todo.isCompleted);
+        itemsLeft.textContent = activeTodos.length;
       });
 
       const checkTaskButton = document.createElement("i");
@@ -237,6 +280,9 @@ document.addEventListener("DOMContentLoaded", function () {
         toggleOpacity(checkTaskButton, 0);
         input.classList.toggle("check");
         toggleTodoItem(index);
+        const itemsLeft = document.getElementById("items-left");
+        const activeTodos = todos.filter((todo) => !todo.isCompleted);
+        itemsLeft.textContent = activeTodos.length;
       });
 
       const editDeleteButton = document.createElement("button");
