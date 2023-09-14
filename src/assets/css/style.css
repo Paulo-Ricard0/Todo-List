@@ -391,6 +391,20 @@ header.card {
   margin: 0 0.5rem;
 }
 
+/* SCROLLBAR STYLES */
+::-webkit-scrollbar-track {
+  background-color: var(--primary-color);
+}
+
+::-webkit-scrollbar {
+  width: 1.1rem;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--secondary-text-color);
+  border-radius: 0.8rem;
+}
+
 /* MEDIA QUERIE 768px */
 @media (max-width: 768px) {
 
