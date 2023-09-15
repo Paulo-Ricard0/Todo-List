@@ -40,7 +40,7 @@
 - [Como executar localmente](#-como-executar-localmente)
   - [Pré-requisitos](#pré-requisitos)
   - [Rodando a aplicação](#-rodando-a-aplica%C3%A7%C3%A3o)
-- [Autor](#-colaboradores)
+- [Autor](#-autor)
 - [Como contribuir para o projeto](#-como-contribuir-para-o-projeto)
 - [Licença](#-licença)
 
